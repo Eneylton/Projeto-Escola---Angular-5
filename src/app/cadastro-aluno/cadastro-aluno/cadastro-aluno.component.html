@@ -1,3 +1,65 @@
-<p>
-  cadastro-aluno works!
-</p>
+
+<h3> Novo Aluno </h3>
+<hr />
+
+<form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <button pButton type="submit" class="ui-button-info"
+        label="Salvar" icon="fa-plus"></button>
+
+    </div>
+
+    <div class="ui-toolbar-group-right">
+        <button pButton type="button" icon="fa-search" class="ui-button-success"></button>
+
+    </div>
+</p-toolbar>
+<br />
+
+<p-card>
+    <h5>Informe os dados <small>do aluno...</small></h5>
+
+    <hr />
+    <br />
+    <span class="ui-float-label">
+        <input  pInputText type="text" [(ngModel)]="aluno.nome"
+                name="nome" ngModel #nome="ngModel" required minlength="5">
+        <label for="float-input">Nome</label>
+    </span>
+    <br />
+
+    <span class="ui-float-label">
+        <input  pInputText type="text" [(ngModel)]="aluno.endereco"
+                name="endereco" ngModel #endereco="ngModel" required minlength="5">
+        <label for="float-input">Endereço</label>
+    </span>
+
+    <br />
+
+    <span class="ui-float-label">
+        <input  pInputText type="text" [(ngModel)]="aluno.telefone"
+                name="telefone" ngModel #telefone="ngModel" required minlength="5">
+        <label for="float-input">Telefone</label>
+    </span>
+
+    <br />
+
+    <span class="ui-float-label">
+        <input  pInputText type="text" [(ngModel)]="aluno.email"
+                name="email" ngModel #email="ngModel" required minlength="5">
+        <label for="float-input">Email</label>
+    </span>
+
+    <br />
+
+
+    <span class="ui-float-label">
+    <p-dropdown name="categoria" [options]="sexos" id="Selecione o sexo" [style]="{width: '215px'}"
+     [(ngModel)]="aluno.sexo.id"
+      placeholder="Selecione" [autoWidth]="false"
+      ngModel required></p-dropdown>
+      <label for="float-input">Selecione o sexo</label>
+      </span>
+</p-card>
+</form>
