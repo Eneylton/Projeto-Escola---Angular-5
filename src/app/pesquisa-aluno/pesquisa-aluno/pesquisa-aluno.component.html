@@ -1,0 +1,44 @@
+<h3>Lista de Alunos</h3>
+<hr />
+
+<div class="ui-g-12">
+    <p-toolbar>
+      <div class="ui-toolbar-group-left">
+        <button pButton type="button" label="Novo Aluno"
+                icon="fa fa-arrow-circle-left" routerLink="/alunos/novo" ></button>
+
+      </div>
+
+      <div class="ui-toolbar-group-right">
+        <button pButton type="button" icon="fa-search" class="ui-button-warning"></button>
+        <button pButton type="button" icon="fa-refresh" class="ui-button-danger"></button>
+      </div>
+    </p-toolbar>
+
+    <hr />
+
+    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input #gb type="text" pInputText size="40" >
+    </div>
+
+    <p-dataTable [value]="alunos" [paginator]="true" [rows]="5" [responsive]="true" #tabela>
+
+        <p-column field="id" header="Código" styleClass="col-id"></p-column>
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="endereco" header="Endereço"></p-column>
+        <p-column field="telefone" header="Telefone" styleClass="col-tel"></p-column>
+        <p-column field="sexo.descricao" header="Sexo"></p-column>
+
+
+        <p-column styleClass="col-acoes" header="Ações">
+          <ng-template let-aluno="rowData" pTemplate="body">
+
+              <button pButton icon="fa-pencil" pTooltip="Editar" class="ui-button-warning" tooltipPosition="top" [routerLink]="['/alunos', aluno.id]"></button>
+
+            <button pButton icon="fa-trash" pTooltip="Excluir" class="ui-button-danger" tooltipPosition="top" (click)="confirmarExclusao(aluno.id)"></button>
+          </ng-template>
+
+
+        </p-column>
+      </p-dataTable>

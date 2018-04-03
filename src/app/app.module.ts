@@ -1,3 +1,4 @@
+import { PesquisaAlunoModule } from './pesquisa-aluno/pesquisa-aluno.module';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     HttpModule,
     AppRoutingModule,
+    PesquisaAlunoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

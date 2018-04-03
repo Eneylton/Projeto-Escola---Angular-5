@@ -18,6 +18,7 @@ import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.componen
     CardModule,
     InputTextModule,
     DropdownModule,
+    RouterModule,
     FormsModule
   ],
   declarations: [CadastroAlunoComponent],

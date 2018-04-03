@@ -25,6 +25,7 @@ export class CadastroAlunoComponent implements OnInit {
     private sexoService : SexoService,
     private toasty: ToastyService,
     private route: ActivatedRoute,
+    private title: Title,
     private errorHandler: ErrorHandlerService
   ) { }
 
@@ -32,16 +33,39 @@ export class CadastroAlunoComponent implements OnInit {
 
     const codigoAluno = this.route.snapshot.params['codigo'];
 
-    this.carregarSexos();
+    if (codigoAluno) {
+      this.carregarAluno(codigoAluno);
+      this.carregarSexos();
 
+    }
+
+  }
+
+  get editando() {
+    return Boolean(this.aluno.id)
+  }
+
+  carregarAluno(codigo: number) {
+    this.cadastroAlunoService.buscarPorCodigo(codigo)
+      .then(aluno => {
+        this.aluno = aluno;
+      });
   }
 
   salvar(form: FormControl) {
 
-    this.cadastroAlunoService.adicionar(this.aluno);
+    if (this.editando) {
+      this.cadastroAlunoService.atualizar(this.aluno);
+      form.reset();
+      this.toasty.success('Aluno atualizado com sucesso!');
+    } else {
+
+      this.cadastroAlunoService.adicionar(this.aluno);
       form.reset();
 
-    this.toasty.success('Aluno cadastrodo com sucesso!');
+      this.toasty.success('Aluno cadastrado com sucesso!');
+
+    }
 
   }
 
@@ -55,6 +79,8 @@ export class CadastroAlunoComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Edição de lançamento: ${this.aluno.nome}`);
+  }
 
 }
